@@ -15,7 +15,7 @@ import { works } from '../../data/works';
 
     <div class="list">
       {works.map((w) => (
-        <a href={`/works/${w.slug}/`} class="card">
+        <a href={w.href} class="card">
           <div class="row1">
             <span class="t">{w.title}</span>
             <svg class="arr" width="30" height="13" viewBox="0 0 30 13" fill="none" aria-hidden="true">

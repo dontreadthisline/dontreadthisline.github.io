@@ -18,8 +18,8 @@ src/
 ├── pages/
 │   ├── index.astro       # 首页：最新作品 + 最近笔记
 │   ├── about.astro       # 自介 + now 页
-│   ├── works/            # 作品索引 + 每个作品一个手写目录
-│   │   └── tinyregex/    # 示例作品页（"设计之书"风格）
+│   ├── works/            # 作品索引（卡片可外链，如 tinyautograd 的项目页）
+│   │   └── <slug>/       # 需要站内作品页时，每个作品手写一个目录
 │   └── notes/            # 笔记索引 + [slug] 详情
 └── content/
     └── notes/            # 笔记 Markdown
@@ -60,7 +60,7 @@ npm run preview   # 本地预览构建产物
 ## 还没换的占位
 - `src/layouts/base.astro` 的 `SITE_NAME`（导航手写体 logo）
 - `src/pages/about.astro` 的占位文字与邮箱
-- `src/data/works.ts` 与示例作品页 `works/tinyregex/`（换成你自己的）
+- `src/data/works.ts` 与示例笔记（换成你自己的）
 
 ## 待办
 

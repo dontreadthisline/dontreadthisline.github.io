@@ -1,7 +1,7 @@
-// 作品索引数据。作品页本身是手写的（src/pages/works/<slug>/index.astro），
-// 这里只登记目录卡片要显示的元信息。
+// 作品索引数据。
+// 站内作品页：在 src/pages/works/<slug>/ 手写页面，href 填 /works/<slug>/
+// 外部作品（如部署在别的仓库 Pages 的项目页）：href 直接填外链。
 export interface Work {
-  slug: string;
   title: string;
   tagline: string;
   lang: string;
@@ -9,17 +9,18 @@ export interface Work {
   status: '写着呢' | '读完了' | '弃坑';
   date: string;
   repo?: string;
+  href: string;
 }
 
 export const works: Work[] = [
   {
-    slug: 'tinyregex',
-    title: 'tinyregex',
-    tagline: '三百行写一个正则引擎，顺便把 Thompson 构造啃下来',
+    title: 'tinyautograd',
+    tagline: 'MLX 之上约六百行 Python 的自动微分框架，配一本自包含的设计之书',
     lang: 'Python',
-    lines: '~300 行',
-    status: '写着呢',
-    date: '2026.11',
-    // repo: 'https://github.com/yourname/tinyregex',
+    lines: '~600 行',
+    status: '读完了',
+    date: '2026',
+    repo: 'https://github.com/dontreadthisline/tinyautograd',
+    href: 'https://dontreadthisline.github.io/tinyautograd/',
   },
 ];

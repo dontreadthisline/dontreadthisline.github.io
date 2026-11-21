@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/base.astro';
+import Underline from '../components/Underline.astro';
+---
+
+<Base title="关于 — workbench">
+  <section class="page">
+    <p class="kicker">about —</p>
+    <h1>关于这块<Underline>工作台</Underline></h1>
+
+    <div class="prose">
+      <p>
+        程序员。白天写业务代码，晚上写一些没人要求我写的代码。
+        相信小而能读完的东西：三百行的解释器、一页纸的设计、一个下午能讲完的算法。
+      </p>
+      <p>
+        这个站不放简历，不放转载，只放两类东西：
+        <strong>做出来的作品</strong>，和<strong>学会它的过程</strong>。
+        如果某篇笔记替你省了一个下午，那它就值了。
+      </p>
+    </div>
+
+    <h2 class="hand-head">now</h2>
+    <ul class="now">
+      <li><b>在学</b>Thompson 构造 & 子集构造（tinyregex 项目带着学）</li>
+      <li><b>在读</b>《Crafting Interpreters》第二遍，这回动手抄</li>
+      <li><b>在写</b>这个博客本身，也算一件作品</li>
+    </ul>
+
+    <h2 class="hand-head">找到我</h2>
+    <ul class="now">
+      <li><b>GitHub</b><a href="https://github.com/dontreadthisline" rel="me">@dontreadthisline</a></li>
+      <li><b>邮件</b><a href="mailto:you@example.com">you@example.com</a></li>
+    </ul>
+
+    <p class="ps">这一页的每一行占位文字，都等着被换成真话。</p>
+  </section>
+</Base>
+
+<style>
+  .page {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 3.2rem 24px 0;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: 1.9rem;
+    margin: 0.3rem 0 1rem;
+  }
+
+  .prose p {
+    font-family: var(--serif);
+    margin: 0.9em 0;
+    color: #333d4a;
+  }
+
+  .prose strong { color: var(--accent-ink); }
+
+  .hand-head {
+    font: 600 1.7rem/1 var(--hand);
+    color: var(--accent);
+    margin: 2.4rem 0 0.6rem;
+  }
+
+  .now {
+    list-style: none;
+    font-family: var(--serif);
+  }
+
+  .now li {
+    display: flex;
+    gap: 16px;
+    padding: 0.5rem 2px;
+    border-bottom: 1px dashed var(--line);
+    color: #414c59;
+  }
+
+  .now b {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--dim);
+    min-width: 4.5em;
+  }
+
+  .ps {
+    margin-top: 2.6rem;
+    font: 500 1.15rem/1.4 var(--hand);
+    color: var(--dim);
+    transform: rotate(-1.2deg);
+  }
+</style>

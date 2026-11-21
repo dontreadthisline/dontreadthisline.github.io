@@ -1,0 +1,83 @@
+---
+import Base from '../../layouts/base.astro';
+import StatusBadge from '../../components/StatusBadge.astro';
+import { works } from '../../data/works';
+---
+
+<Base title="作品 — workbench">
+  <section class="page">
+    <p class="kicker">works —</p>
+    <h1>做出来的东西</h1>
+    <p class="sub">
+      少，但每一个都打算读到最后一行。
+      每个作品配一篇手写的“设计之书”，讲清它为什么长这样。
+    </p>
+
+    <div class="list">
+      {works.map((w) => (
+        <a href={`/works/${w.slug}/`} class="card">
+          <div class="row1">
+            <span class="t">{w.title}</span>
+            <svg class="arr" width="30" height="13" viewBox="0 0 30 13" fill="none" aria-hidden="true">
+              <path d="M1 7 C 9 3, 19 10, 27 6 M22 2 L28 6 L22 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+            </svg>
+          </div>
+          <p class="g">{w.tagline}</p>
+          <div class="meta-row">
+            <span>{w.lang}</span>
+            <span class="sep">/</span>
+            <span>{w.lines}</span>
+            <span class="sep">/</span>
+            <span>{w.date}</span>
+            <span class="sep">/</span>
+            <StatusBadge status={w.status} />
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 3.2rem 24px 0;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: 1.9rem;
+    margin: 0.3rem 0 0.6rem;
+  }
+
+  .sub {
+    color: var(--dim);
+    margin-bottom: 2.4rem;
+  }
+
+  .list {
+    display: grid;
+    gap: 1.1rem;
+  }
+
+  .row1 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .t {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 700;
+  }
+
+  .card:hover .t { color: var(--accent-deep); }
+
+  .g {
+    color: var(--dim);
+    font-size: 14.5px;
+    margin: 0.35rem 0 0.8rem;
+  }
+</style>

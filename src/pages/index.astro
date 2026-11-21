@@ -1,0 +1,178 @@
+---
+import Base from '../layouts/base.astro';
+import Underline from '../components/Underline.astro';
+import StatusBadge from '../components/StatusBadge.astro';
+import { getCollection } from 'astro:content';
+import { works } from '../data/works';
+
+const notes = (await getCollection('notes'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 4);
+
+const fmt = (d: Date) =>
+  `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+---
+
+<Base title="workbench — 作品与学习笔记">
+  <section class="hero">
+    <p class="kicker">hi, welcome —</p>
+    <h1>
+      我把代码当成<Underline>可以慢慢读</Underline>的文字。<br />
+      这里放我做出来的东西，和学会它们的过程。
+    </h1>
+    <p class="sub">
+      白天写业务代码，晚上写一些没人要求我写的代码。
+      作品是货架，笔记是流水 —— 两者都还在补货。
+    </p>
+  </section>
+
+  <section class="grid">
+    <div class="col">
+      <h2 class="colhead">
+        作品 <a href="/works/" class="more">全部 →</a>
+      </h2>
+      {works.map((w) => (
+        <a href={`/works/${w.slug}/`} class="card work-card">
+          <div class="wtitle">
+            {w.title}
+            <svg class="arr" width="26" height="12" viewBox="0 0 26 12" fill="none" aria-hidden="true">
+              <path d="M1 6 C 8 3, 16 9, 23 6 M19 2 L24 6 L19 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+            </svg>
+          </div>
+          <p class="tagline">{w.tagline}</p>
+          <div class="meta-row">
+            <span>{w.lang}</span>
+            <span class="sep">/</span>
+            <span>{w.lines}</span>
+            <span class="sep">/</span>
+            <StatusBadge status={w.status} />
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="col">
+      <h2 class="colhead">
+        最近在写 <a href="/notes/" class="more">全部 →</a>
+      </h2>
+      <ul class="notelist">
+        {notes.map((n) => (
+          <li>
+            <a href={`/notes/${n.id}/`} class="ntitle">{n.data.title}</a>
+            <span class="nmeta">
+              <time>{fmt(n.data.date)}</time>
+              <StatusBadge status={n.data.status} />
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    max-width: var(--wide);
+    margin: 0 auto;
+    padding: 4.6rem 28px 3.4rem;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 3.6vw, 2.3rem);
+    font-weight: 700;
+    line-height: 1.6;
+    margin-top: 0.8rem;
+  }
+
+  .hero .sub {
+    margin-top: 1.2rem;
+    color: var(--dim);
+    font-size: 1.02rem;
+    max-width: 34em;
+  }
+
+  .grid {
+    max-width: var(--wide);
+    margin: 0 auto;
+    padding: 0 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  @media (max-width: 760px) {
+    .grid { grid-template-columns: 1fr; gap: 28px; }
+    .hero { padding-top: 3.2rem; }
+  }
+
+  .colhead {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    border-bottom: 1.6px solid var(--line);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .more {
+    margin-left: auto;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--dim);
+  }
+  .more:hover { color: var(--accent); }
+
+  .work-card { margin-bottom: 1rem; }
+
+  .wtitle {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .work-card:hover .wtitle { color: var(--accent-deep); }
+
+  .tagline {
+    font-size: 14px;
+    color: var(--dim);
+    margin: 0.4rem 0 0.8rem;
+  }
+
+  .notelist {
+    list-style: none;
+  }
+
+  .notelist li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 0.72rem 2px;
+    border-bottom: 1px dashed var(--line);
+  }
+
+  .ntitle {
+    font-family: var(--serif);
+    font-size: 1.02rem;
+    color: var(--ink);
+  }
+  .ntitle:hover { color: var(--accent-deep); }
+
+  .nmeta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--faint);
+    white-space: nowrap;
+  }
+</style>

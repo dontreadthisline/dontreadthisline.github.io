@@ -1,0 +1,66 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = '一个程序员的个人博客：作品与学习笔记。' } = Astro.props;
+import '../styles/tokens.css';
+import '../styles/hand.css';
+import 'katex/dist/katex.min.css';
+
+// 站点名改这里（导航栏手写体 logo）
+const SITE_NAME = 'work<b>bench</b>';
+
+const links = [
+  { href: '/works/', label: '作品' },
+  { href: '/notes/', label: '笔记' },
+  { href: '/about/', label: '关于' },
+];
+const here = (href: string) =>
+  Astro.url.pathname === href || Astro.url.pathname.startsWith(href);
+---
+
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href="/fonts/caveat-var.woff2" as="font" type="font/woff2" crossorigin />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="bar">
+        <a href="/" class="brand" aria-label="首页">
+          <span class="name" set:html={SITE_NAME} />
+          <svg width="118" height="7" viewBox="0 0 118 7" fill="none" aria-hidden="true">
+            <path
+              d="M2 4 C 24 1, 48 7, 64 4 S 96 2, 116 4"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            />
+          </svg>
+        </a>
+        <div class="links">
+          {links.map((l) => (
+            <a href={l.href} class={here(l.href) ? 'active' : ''}>{l.label}</a>
+          ))}
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="foot">
+      <div class="inner">
+        <span class="hand">hand-written html, no template.</span>
+        <span class="fine">© {new Date().getFullYear()} · 用 Astro 手搭</span>
+      </div>
+    </footer>
+  </body>
+</html>

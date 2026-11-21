@@ -1,0 +1,94 @@
+---
+import Base from '../../layouts/base.astro';
+import StatusBadge from '../../components/StatusBadge.astro';
+import { getCollection } from 'astro:content';
+
+const all = (await getCollection('notes')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const byYear = new Map<number, typeof all>();
+for (const n of all) {
+  const y = n.data.date.getFullYear();
+  if (!byYear.has(y)) byYear.set(y, []);
+  byYear.get(y)!.push(n);
+}
+const years = [...byYear.keys()].sort((a, b) => b - a);
+
+const fmt = (d: Date) =>
+  `${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+---
+
+<Base title="笔记 — workbench">
+  <section class="page">
+    <p class="kicker">notes —</p>
+    <h1>流水账</h1>
+    <p class="sub">
+      学习是主线，弃坑也是 honest record。状态三种：写着呢、读完了、弃坑。
+    </p>
+
+    {years.map((y) => (
+      <section class="year">
+        <h2 class="ynum">{y}</h2>
+        <ul>
+          {byYear.get(y)!.map((n) => (
+            <li>
+              <time>{fmt(n.data.date)}</time>
+              <a href={`/notes/${n.id}/`}>{n.data.title}</a>
+              <StatusBadge status={n.data.status} />
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </section>
+</Base>
+
+<style>
+  .page {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 3.2rem 24px 0;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: 1.9rem;
+    margin: 0.3rem 0 0.6rem;
+  }
+
+  .sub { color: var(--dim); margin-bottom: 2.6rem; }
+
+  .year { margin-bottom: 2.2rem; }
+
+  .ynum {
+    font: 600 2rem/1 var(--hand);
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+
+  ul { list-style: none; }
+
+  li {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 0.66rem 2px;
+    border-bottom: 1px dashed var(--line);
+  }
+
+  time {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--faint);
+    white-space: nowrap;
+  }
+
+  li a {
+    font-family: var(--serif);
+    font-size: 1.03rem;
+    color: var(--ink);
+    flex: 1;
+  }
+  li a:hover { color: var(--accent-deep); }
+</style>

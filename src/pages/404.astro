@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/base.astro';
+---
+
+<Base title="404 — workbench">
+  <section class="page">
+    <p class="big">404</p>
+    <p class="say">这页还没写，或者写丢了。</p>
+    <p class="go"><a href="/">→ 回工作台</a></p>
+  </section>
+</Base>
+
+<style>
+  .page {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 6rem 24px 0;
+    text-align: center;
+  }
+
+  .big {
+    font: 600 6rem/1 var(--hand);
+    color: var(--accent);
+    transform: rotate(-2deg);
+  }
+
+  .say {
+    font-family: var(--serif);
+    color: var(--dim);
+    margin-top: 1rem;
+  }
+
+  .go { margin-top: 2.2rem; }
+</style>

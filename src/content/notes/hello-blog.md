@@ -2,12 +2,23 @@
 title: 这个博客是怎么搭起来的
 date: 2026-11-21
 status: 写着呢
+layout: code
 tags: [meta, astro]
 summary: 两类内容、一套色板、零主题。记录这个站的结构决策，顺便当它自己的第一篇笔记。
 marginalia: 等第一个作品页真正挂上来之后，回来把"作品页不走模板"这条检验一遍。
 ---
 
 第一篇笔记写博客本身，挺合理 —— 它就是我最近的周末项目。
+
+## 搭建日志（踩过的坑）
+
+<div class="stuck">
+  布局组件起名 <code>base</code>，和 HTML 现有标签撞名。Astro 把 <code>&lt;base title="..."&gt;</code> 当成真 HTML 标签原样输出，导航、页脚、样式骨架整个消失，页面裸奔。组件必须 PascalCase。
+</div>
+
+<div class="stuck">
+  <code>.astro</code> 模板里 KaTeX 公式的 <code>\{</code>、Python 集合推导式的 <code>{...}</code> 都会被当成模板表达式。解法：公式在 frontmatter 里 <code>katex.renderToString()</code>，代码块 <code>set:html</code> 注入。
+</div>
 
 ## 结构上最重要的一个决定
 

@@ -1,0 +1,28 @@
+---
+import base from '../../layouts/base.astro';
+---
+
+<base title="首页形态 mock — workbench">
+  <section class="page">
+    <p class="kicker">mocks —</p>
+    <h1>首页形态，三个方向</h1>
+    <p class="sub">
+      看完选一个（或者说"A 的头 + C 的首屏"这种组合也行），选中的会实装成真首页，其余删除。
+    </p>
+    <ul class="list">
+      <li><a href="/mocks/a/">A · 工作台式</a> — 双栏直给 + aha room 横条（信息效率最高）</li>
+      <li><a href="/mocks/b/">B · 文集式</a> — 大自述 + 目录页式纯列表（书卷气最重）</li>
+      <li><a href="/mocks/c/">C · 封面式</a> — 整屏一句话 + 下滚见内容（设计感最强）</li>
+    </ul>
+  </section>
+</base>
+
+<style>
+  .page { max-width: var(--max); margin: 0 auto; padding: 3.2rem 24px 0; }
+  h1 { font-family: var(--serif); font-size: 1.9rem; margin: 0.3rem 0 0.6rem; }
+  .sub { color: var(--dim); margin-bottom: 2rem; }
+  .list { list-style: none; font-family: var(--serif); }
+  .list li { padding: 0.9rem 2px; border-bottom: 1px dashed var(--line); }
+  .list a { font-size: 1.05rem; }
+  .list a::after { content: ' — '; color: var(--faint); }
+</style>

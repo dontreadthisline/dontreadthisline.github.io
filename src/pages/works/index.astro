@@ -16,21 +16,30 @@ import { works } from '../../data/works';
     <div class="list">
       {works.map((w) => (
         <a href={w.href} class="card">
-          <div class="row1">
-            <span class="t">{w.title}</span>
-            <svg class="arr" width="30" height="13" viewBox="0 0 30 13" fill="none" aria-hidden="true">
-              <path d="M1 7 C 9 3, 19 10, 27 6 M22 2 L28 6 L22 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
-            </svg>
-          </div>
-          <p class="g">{w.tagline}</p>
-          <div class="meta-row">
-            <span>{w.lang}</span>
-            <span class="sep">/</span>
-            <span>{w.lines}</span>
-            <span class="sep">/</span>
-            <span>{w.date}</span>
-            <span class="sep">/</span>
-            <StatusBadge status={w.status} />
+          <svg class="mini" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <circle cx="10" cy="24" r="5" class="n" />
+            <circle cx="24" cy="10" r="5" class="n" />
+            <circle cx="24" cy="38" r="5" class="n" />
+            <circle cx="40" cy="24" r="5" class="n acc" />
+            <path d="M14 21 C 18 16, 19 14, 21 12 M14 27 C 18 32, 19 34, 21 36 M28 12 C 33 15, 35 18, 37 21 M28 36 C 33 33, 35 30, 37 27" class="e" />
+          </svg>
+          <div>
+            <div class="row1">
+              <span class="t">{w.title}</span>
+              <svg class="arr" width="30" height="13" viewBox="0 0 30 13" fill="none" aria-hidden="true">
+                <path d="M1 7 C 9 3, 19 10, 27 6 M22 2 L28 6 L22 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+              </svg>
+            </div>
+            <p class="g">{w.tagline}</p>
+            <div class="meta-row">
+              <span>{w.lang}</span>
+              <span class="sep">/</span>
+              <span>{w.lines}</span>
+              <span class="sep">/</span>
+              <span>{w.date}</span>
+              <span class="sep">/</span>
+              <StatusBadge status={w.status} />
+            </div>
           </div>
         </a>
       ))}
@@ -60,6 +69,13 @@ import { works } from '../../data/works';
     display: grid;
     gap: 1.1rem;
   }
+
+  .card { display: flex; gap: 18px; align-items: flex-start; }
+
+  .mini { width: 48px; flex: none; margin-top: 4px; }
+  .mini .n { fill: var(--bg); stroke: var(--accent); stroke-width: 1.8; }
+  .mini .n.acc { fill: var(--accent); }
+  .mini .e { stroke: var(--line-strong); stroke-width: 1.8; fill: none; stroke-linecap: round; }
 
   .row1 {
     display: flex;

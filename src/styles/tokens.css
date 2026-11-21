@@ -9,20 +9,23 @@
   --accent-deep: #2c3a8c;
   --accent-ink: #22306e;
 
-  /* 纸与面板 */
-  --paper: #fbfaf6;        /* 页面底色，米白 */
-  --bg: #ffffff;           /* 卡片 */
-  --panel: #eef1f9;        /* 淡墨蓝面板 */
-  --wash: #f5f2e9;         /* 米黄便签 */
+  /* 纸与面板（与 tinyautograd 同族：白底 + 淡墨蓝面板） */
+  --paper: #ffffff;
+  --bg: #ffffff;
+  --panel: #edf0f8;
+  --wash: #f5f2e9;         /* 米黄便签（aha / 回头看） */
 
-  /* 墨色 */
-  --ink: #232c38;
-  --dim: #6f7d8c;
-  --faint: #a5aeb8;
+  /* 墨色（对齐 tinyautograd） */
+  --ink: #1f2937;
+  --dim: #6b7280;
+  --faint: #9ca6b2;
 
   /* 线 */
   --line: rgba(58, 74, 168, 0.16);
   --line-strong: rgba(58, 74, 168, 0.38);
+
+  /* 卡点信号色（stuck 专用暖赭，家族里唯一的异色，只表达“问题”） */
+  --alert: #a2543f;
 
   /* 状态色：写着呢 / 读完了 / 弃坑 */
   --st-wip: #3a4aa8;

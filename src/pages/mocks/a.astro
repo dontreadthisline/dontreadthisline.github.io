@@ -1,0 +1,107 @@
+---
+// Mock A · 工作台式：现首页的增强版 —— 顶部签名行 + 双栏 + aha room 横条
+import base from '../../layouts/base.astro';
+import Underline from '../../components/Underline.astro';
+import StatusBadge from '../../components/StatusBadge.astro';
+---
+
+<base title="Mock A · 工作台式 — workbench">
+  <section class="hero">
+    <div class="signline">
+      <span class="hand">dontreadthisline</span>
+      <svg width="150" height="8" viewBox="0 0 150 8" fill="none" aria-hidden="true">
+        <path d="M2 5 C 30 1, 60 8, 90 4 S 130 2, 148 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      </svg>
+      <span class="fine">程序员的工位：一半货架，一半流水</span>
+    </div>
+    <h1>
+      我把代码当成<Underline>可以慢慢读</Underline>的文字。<br />
+      这里放我做出来的东西，和学会它们的过程。
+    </h1>
+  </section>
+
+  <section class="grid">
+    <div class="col">
+      <h2 class="colhead">作品 <a href="/works/" class="more">全部 →</a></h2>
+      <a href="https://dontreadthisline.github.io/tinyautograd/" class="card work-card">
+        <svg class="mini" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <circle cx="10" cy="24" r="5" class="n" />
+          <circle cx="24" cy="10" r="5" class="n" />
+          <circle cx="24" cy="38" r="5" class="n" />
+          <circle cx="40" cy="24" r="5" class="n acc" />
+          <path d="M14 21 C 18 16, 19 14, 21 12 M14 27 C 18 32, 19 34, 21 36 M28 12 C 33 15, 35 18, 37 21 M28 36 C 33 33, 35 30, 37 27" class="e" />
+        </svg>
+        <div>
+          <div class="wtitle">tinyautograd</div>
+          <p class="tagline">MLX 之上约六百行 Python 的自动微分框架，配一本设计之书</p>
+          <div class="meta-row"><span>Python</span><span class="sep">/</span><span>~600 行</span><span class="sep">/</span><StatusBadge status="读完了" /></div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col">
+      <h2 class="colhead">最近在写 <a href="/notes/" class="more">全部 →</a></h2>
+      <ul class="notelist">
+        <li>
+          <a href="/notes/hello-blog/" class="ntitle">这个博客是怎么搭起来的</a>
+          <span class="nmeta"><time>2026.11.21</time><StatusBadge status="写着呢" /></span>
+        </li>
+        <li>
+          <a href="/notes/thompson-nfa/" class="ntitle">Thompson 构造：正则如何在纸上变成状态机</a>
+          <span class="nmeta"><time>2026.11.19</time><StatusBadge status="读完了" /></span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="aharoom">
+    <div class="head">
+      <span class="hand">aha room</span>
+      <span class="fine">最近一次顿悟</span>
+    </div>
+    <div class="quote">
+      <p>
+        新状态永远只通过 ε 边参与游戏 —— 归纳构造时每个 case 都不需要碰子机器的内部。
+        这就是 Thompson 构造"可教"的原因。
+      </p>
+      <span class="from">— Thompson 构造笔记，11.19</span>
+    </div>
+  </section>
+</base>
+
+<style>
+  .hero { max-width: var(--wide); margin: 0 auto; padding: 3.4rem 28px 2.6rem; }
+  .signline { display: flex; align-items: baseline; gap: 14px; }
+  .signline .hand { font: 600 30px/1 var(--hand); color: var(--ink); }
+  .signline svg { color: var(--accent); align-self: center; }
+  .signline .fine { font-size: 13px; color: var(--faint); }
+  .hero h1 { font-family: var(--serif); font-size: clamp(1.5rem, 3.4vw, 2.15rem); line-height: 1.65; margin-top: 1.4rem; }
+
+  .grid { max-width: var(--wide); margin: 0 auto; padding: 0 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; gap: 26px; } }
+
+  .colhead { font-family: var(--serif); font-size: 1.15rem; display: flex; align-items: baseline; gap: 12px; border-bottom: 1.6px solid var(--line); padding-bottom: 0.5rem; margin-bottom: 1.2rem; }
+  .more { margin-left: auto; font-family: var(--sans); font-size: 13px; font-weight: 400; color: var(--dim); }
+
+  .work-card { display: flex; gap: 18px; align-items: flex-start; }
+  .mini { width: 48px; flex: none; margin-top: 4px; }
+  .mini .n { fill: var(--bg); stroke: var(--accent); stroke-width: 1.8; }
+  .mini .n.acc { fill: var(--accent); }
+  .mini .e { stroke: var(--line-strong); stroke-width: 1.8; fill: none; stroke-linecap: round; }
+  .wtitle { font-family: var(--serif); font-size: 1.25rem; font-weight: 700; }
+  .work-card:hover .wtitle { color: var(--accent-deep); }
+  .tagline { font-size: 14px; color: var(--dim); margin: 0.35rem 0 0.7rem; }
+
+  .notelist { list-style: none; }
+  .notelist li { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; padding: 0.72rem 2px; border-bottom: 1px dashed var(--line); }
+  .ntitle { font-family: var(--serif); font-size: 1.02rem; color: var(--ink); }
+  .nmeta { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12px; color: var(--faint); white-space: nowrap; }
+
+  .aharoom { max-width: var(--wide); margin: 3.2rem auto 0; padding: 0 28px; }
+  .aharoom .head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 0.7rem; }
+  .aharoom .hand { font: 600 26px/1 var(--hand); color: var(--accent); }
+  .aharoom .fine { font-size: 12.5px; color: var(--faint); }
+  .quote { background: var(--wash); border: 1.6px solid var(--line-strong); border-radius: var(--r-sketch); padding: 18px 26px; }
+  .quote p { font-family: var(--serif); color: #414c59; }
+  .from { display: block; text-align: right; font: 500 18px/1 var(--hand); color: var(--dim); margin-top: 8px; }
+</style>

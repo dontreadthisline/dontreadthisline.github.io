@@ -1,0 +1,94 @@
+---
+// Mock B · 文集式：大自述 + 目录页式纯列表，书卷气
+import base from '../../layouts/base.astro';
+import Underline from '../../components/Underline.astro';
+import StatusBadge from '../../components/StatusBadge.astro';
+---
+
+<base title="Mock B · 文集式 — workbench">
+  <section class="cover">
+    <p class="hand">vol.1 —</p>
+    <h1>
+      代码、笔记，<br />和一些<Underline>做出来</Underline>的东西。
+    </h1>
+    <p class="sub">
+      我是 dontreadthisline，程序员。<br />
+      相信小而能读完的项目，和写得诚实的学习记录。
+    </p>
+  </section>
+
+  <section class="toc">
+    <h2 class="hand-h">作品</h2>
+    <a class="entry work" href="https://dontreadthisline.github.io/tinyautograd/">
+      <span class="t">tinyautograd</span>
+      <span class="g">MLX 之上约六百行的自动微分框架，配一本设计之书</span>
+      <span class="m mono">Python · ~600 行 · 2026</span>
+    </a>
+
+    <h2 class="hand-h">笔记</h2>
+    <a class="entry" href="/notes/hello-blog/">
+      <span class="t">这个博客是怎么搭起来的</span>
+      <span class="m mono">2026.11.21</span>
+    </a>
+    <a class="entry" href="/notes/thompson-nfa/">
+      <span class="t">Thompson 构造：正则如何在纸上变成状态机</span>
+      <span class="m mono">2026.11.19</span>
+    </a>
+
+    <div class="aha-strip">
+      <span class="hand">aha —</span>
+      新状态永远只通过 ε 边参与游戏，这就是 Thompson 构造可教的原因。
+    </div>
+  </section>
+</base>
+
+<style>
+  .cover {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 4.4rem 24px 3rem;
+    text-align: center;
+  }
+  .cover .hand { font: 600 26px/1 var(--hand); color: var(--accent); }
+  .cover h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4.4vw, 2.7rem); line-height: 1.55; margin: 1rem 0 1.2rem; }
+  .cover .sub { color: var(--dim); font-family: var(--serif); line-height: 2; }
+
+  .toc { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+  .hand-h {
+    font: 600 1.9rem/1 var(--hand);
+    color: var(--accent);
+    margin: 2.4rem 0 0.8rem;
+    text-align: center;
+  }
+
+  .entry {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 0.85rem 4px;
+    border-bottom: 1px dashed var(--line);
+    color: var(--ink);
+  }
+  .entry:hover .t { color: var(--accent-deep); }
+  .entry .t { font-family: var(--serif); font-size: 1.08rem; flex: 1; }
+  .entry.work { flex-wrap: wrap; }
+  .entry.work .t { flex: none; font-size: 1.3rem; font-weight: 700; }
+  .entry.work .g { flex-basis: 100%; font-size: 14px; color: var(--dim); order: 3; padding-left: 2px; }
+  .entry.work .m { order: 2; }
+  .mono { font-family: var(--mono); font-size: 12px; color: var(--faint); white-space: nowrap; }
+
+  .aha-strip {
+    margin-top: 3rem;
+    background: var(--wash);
+    border: 1.6px solid var(--line-strong);
+    border-radius: var(--r-sketch);
+    padding: 14px 24px;
+    font-family: var(--serif);
+    color: #414c59;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .aha-strip .hand { font: 600 26px/1 var(--hand); color: var(--accent); flex: none; }
+</style>

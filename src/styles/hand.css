@@ -9,7 +9,7 @@
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(251, 250, 246, 0.92);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
 }
@@ -155,6 +155,52 @@
   display: inline-block;
   vertical-align: middle;
   color: var(--accent);
+}
+
+/* ---------- aha room：顿悟便签（手写体） ---------- */
+
+.aha {
+  position: relative;
+  margin: 2rem 0;
+  padding: 15px 24px 13px 76px;
+  background: var(--wash);
+  border: 1.6px solid var(--line-strong);
+  border-radius: var(--r-sketch);
+  font-family: var(--serif);
+  color: #414c59;
+}
+
+.aha::before {
+  content: 'aha \2014';
+  position: absolute;
+  left: 16px;
+  top: 12px;
+  font: 600 27px/1 var(--hand);
+  color: var(--accent);
+  transform: rotate(-2deg);
+}
+
+/* ---------- stuck：卡点标注 ---------- */
+
+.stuck {
+  position: relative;
+  margin: 1.8rem 0;
+  padding: 13px 22px 11px 92px;
+  background: #faf3f0;
+  border: 1.6px solid rgba(162, 84, 63, 0.35);
+  border-radius: var(--r-sketch);
+  font-family: var(--serif);
+  color: #4a4a4a;
+}
+
+.stuck::before {
+  content: '\5361\u4f4f\u4e86 \2014';
+  position: absolute;
+  left: 16px;
+  top: 12px;
+  font: 600 25px/1 var(--hand);
+  color: var(--alert);
+  transform: rotate(-1.5deg);
 }
 
 /* ---------- 杂项 ---------- */

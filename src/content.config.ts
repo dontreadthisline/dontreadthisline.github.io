@@ -8,6 +8,8 @@ const notes = defineCollection({
     title: z.string(),
     date: z.coerce.date(),
     status: z.enum(['写着呢', '读完了', '弃坑']),
+    // 排版模板：math = 数学推导型（公式优先、疏朗），code = 代码讲解型（代码优先、紧凑）
+    layout: z.enum(['math', 'code']).default('math'),
     tags: z.array(z.string()).default([]),
     summary: z.string().default(''),
     // 回头看时给自己的批注，会以手写便签的形式出现在文末

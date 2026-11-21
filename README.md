@@ -36,6 +36,7 @@ src/
 title: 标题
 date: 2026-11-21
 status: 写着呢        # 写着呢 | 读完了 | 弃坑
+layout: math         # math = 数学推导型（疏朗、公式优先）；code = 代码讲解型（紧凑、代码优先）
 tags: [tag1, tag2]
 summary: 一句话摘要
 marginalia: 回头看时给自己的批注，会以手写便签出现在文末（可选）
@@ -43,6 +44,18 @@ marginalia: 回头看时给自己的批注，会以手写便签出现在文末�
 ```
 
 数学公式用 `$...$` / `$$...$$`（KaTeX），代码块自动 shiki 高亮。
+
+### aha / stuck：文中手写便签
+
+顿悟时刻和卡点记录，markdown 正文里直接写 HTML：
+
+```html
+<div class="aha">新状态永远只通过 ε 边参与游戏。</div>
+<div class="stuck">布局组件起名 base，和 HTML 标签撞名，骨架整个消失。</div>
+```
+
+aha 渲染成米黄手写便签，stuck 渲染成暖赭色卡点标注 —— 这两类内容是 LLM
+给不了的增量：只写下你真实的顿悟和真实的卡点。
 
 ## 常用命令
 
@@ -65,6 +78,5 @@ npm run preview   # 本地预览构建产物
 ## 待办
 
 - [ ] RSS（@astrojs/rss）
-- [ ] `public/fonts/caveat-var.woff2` 若缺失，手写体会回退到系统手写字体；可从
-      Google Fonts 下载 Caveat variable woff2 放进去
 - [ ] sitemap
+- [ ] `/mocks/`：三个首页形态候选，选型后实装并删除

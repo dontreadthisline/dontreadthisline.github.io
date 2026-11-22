@@ -1,5 +1,5 @@
 ---
-import Base from '../../layouts/base.astro';
+import Base from '../../layouts/Base.astro';
 import StatusBadge from '../../components/StatusBadge.astro';
 import { getCollection } from 'astro:content';
 
@@ -19,7 +19,7 @@ const fmt = (d: Date) =>
   `${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
 ---
 
-<Base title="笔记 — workbench">
+<Base title="笔记 — aha room">
   <section class="page">
     <p class="kicker">notes —</p>
     <h1>流水账</h1>

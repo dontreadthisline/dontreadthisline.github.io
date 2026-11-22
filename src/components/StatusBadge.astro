@@ -1,9 +1,9 @@
 ---
-// StatusBadge: 状态点。写着呢 / 读完了 / 弃坑
+// StatusBadge: 状态点。写着呢 / 读完了 / 弃坑 / 在攒
 interface Props {
-  status: '写着呢' | '读完了' | '弃坑';
+  status: '写着呢' | '读完了' | '弃坑' | '在攒';
 }
 const { status } = Astro.props;
-const cls = { '写着呢': 'wip', '读完了': 'done', '弃坑': 'dead' }[status];
+const cls = { '写着呢': 'wip', '读完了': 'done', '弃坑': 'dead', '在攒': 'soon' }[status];
 ---
 <span class={`badge ${cls}`}>{status}</span>

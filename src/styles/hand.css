@@ -48,11 +48,20 @@
 .nav .links a {
   color: var(--dim);
   padding: 4px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   border-bottom: 2px solid transparent;
   transition: color 0.15s, border-color 0.15s;
 }
 
+.nav .links a .icon {
+  display: inline-flex;
+  transition: transform 0.15s;
+}
+
 .nav .links a:hover { color: var(--accent); }
+.nav .links a:hover .icon { transform: rotate(-7deg) scale(1.12); }
 
 .nav .links a.active {
   color: var(--accent-deep);
@@ -85,6 +94,8 @@
 .badge.done::before   { background: var(--st-done); border-color: var(--st-done); }
 .badge.dead   { color: var(--st-dead); }
 .badge.dead::before   { border-color: var(--st-dead); }
+.badge.soon   { color: var(--dim); }
+.badge.soon::before   { border-style: dashed; }
 
 /* ---------- 手绘下划线 ---------- */
 
@@ -171,7 +182,7 @@
 }
 
 .aha::before {
-  content: 'aha \2014';
+  content: 'aha —';
   position: absolute;
   left: 16px;
   top: 12px;
@@ -194,7 +205,7 @@
 }
 
 .stuck::before {
-  content: '\5361\u4f4f\u4e86 \2014';
+  content: '卡住了 —';
   position: absolute;
   left: 16px;
   top: 12px;

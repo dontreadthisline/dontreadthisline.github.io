@@ -1,17 +1,13 @@
 ---
-import Base from '../../layouts/base.astro';
+import Base from '../../layouts/Base.astro';
 import StatusBadge from '../../components/StatusBadge.astro';
 import { works } from '../../data/works';
 ---
 
-<Base title="作品 — workbench">
+<Base title="作品 — aha room">
   <section class="page">
-    <p class="kicker">works —</p>
-    <h1>做出来的东西</h1>
-    <p class="sub">
-      少，但每一个都打算读到最后一行。
-      每个作品配一篇手写的“设计之书”，讲清它为什么长这样。
-    </p>
+    <p class="kicker">cabinet —</p>
+    <h1>陈列柜</h1>
 
     <div class="list">
       {works.map((w) => (

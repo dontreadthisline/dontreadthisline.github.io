@@ -13,7 +13,7 @@ const d = entry.data.date;
 const dateStr = `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
 ---
 
-<Base title={`${entry.data.title} — workbench`} description={entry.data.summary}>
+<Base title={`${entry.data.title} — aha room`} description={entry.data.summary}>
   <article class={`note layout-${entry.data.layout}`}>
     <header>
       <p class="kicker">note</p>
@@ -145,6 +145,28 @@ const dateStr = `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}
     padding: 0.3em 0;
   }
   .prose img { border-radius: 6px; }
+  .prose table {
+    border-collapse: collapse;
+    margin: 1.5em 0;
+    width: 100%;
+    font-size: 0.92em;
+  }
+  .prose th {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 0.86em;
+    color: var(--dim);
+    text-align: left;
+    padding: 0.5em 0.8em 0.5em 0.4em;
+    border-bottom: 1.6px solid var(--line-strong);
+  }
+  .prose td {
+    font-family: var(--serif);
+    padding: 0.55em 0.8em 0.55em 0.4em;
+    border-bottom: 1px dashed var(--line);
+    vertical-align: top;
+  }
+  .prose td code { font-size: 0.88em; }
   .prose hr {
     border: none;
     border-top: 1px dashed var(--line-strong);

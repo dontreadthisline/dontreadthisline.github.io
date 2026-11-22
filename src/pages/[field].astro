@@ -1,0 +1,128 @@
+---
+// 领域落地页：/math/ /physics/ /code/ —— 聚合该领域下的书（外链独立仓库）
+import Base from '../layouts/Base.astro';
+import StatusBadge from '../components/StatusBadge.astro';
+import Emblem from '../components/Emblem.astro';
+import { fields } from '../data/fields';
+
+export function getStaticPaths() {
+  return fields.map((f) => ({ params: { field: f.key }, props: { field: f } }));
+}
+
+const { field } = Astro.props;
+---
+
+<Base title={`${field.name} — aha room`} description={field.motto}>
+  <section class="page">
+    <header class="hero">
+      <div class="head-text">
+        <p class="kicker">{field.hand}</p>
+        <h1>{field.name}</h1>
+        <p class="motto">{field.motto}</p>
+      </div>
+
+      <!-- 领域徽记：手绘图，每个领域一个 -->
+      <div class="emblem" aria-hidden="true">
+        <Emblem emblem={field.emblem} />
+      </div>
+    </header>
+
+    <div class="now">
+      <span class="hand-h">now</span>
+      {field.now}
+    </div>
+
+    <h2 class="sec-h">书架 · {field.books.length} 项</h2>
+    <div class="list">
+      {field.books.map((b) =>
+        b.href ? (
+          <a href={b.href} class="entry ready">
+            <span class="row1">
+              <span class="t">{b.title}</span>
+              <svg class="arr" width="28" height="12" viewBox="0 0 28 12" fill="none" aria-hidden="true">
+                <path d="M1 6 C 9 3, 18 9, 25 6 M21 2 L26 6 L21 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+              </svg>
+            </span>
+            <p class="g">{b.tagline}</p>
+            <div class="meta-row">
+              <StatusBadge status="读完了" />
+              <span class="sep">/</span>
+              <span>{b.date}</span>
+              <svg class="ext" width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+                <path d="M5 2 H2.6 V10.4 H11 V8 M8.6 2 H11.2 V4.6 M11 2 L 5.6 7.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </a>
+        ) : (
+          <div class="entry soon">
+            <span class="row1">
+              <span class="t">{b.title}</span>
+              <StatusBadge status="在攒" />
+            </span>
+            <p class="g">{b.tagline}</p>
+          </div>
+        )
+      )}
+    </div>
+
+
+    <p class="back"><a href="/">← 回书房</a></p>
+  </section>
+</Base>
+
+<style>
+  .page { max-width: var(--max); margin: 0 auto; padding: 3rem 24px 3.4rem; }
+
+  .hero { display: flex; align-items: center; gap: 20px; margin-bottom: 0.6rem; }
+  .head-text { flex: 1; }
+  @media (max-width: 560px) { .hero { flex-direction: column-reverse; align-items: flex-start; } .emblem { align-self: flex-end; } }
+
+  header h1 { font-family: var(--serif); font-size: 2.1rem; margin: 0.3rem 0 0.5rem; }
+  .motto { font-family: var(--serif); color: var(--dim); }
+
+  /* 领域徽记 */
+  .emblem { flex: none; width: 200px; }
+  .meta-row .ext { color: var(--dim); }
+  .entry.ready:hover .ext { color: var(--accent); }
+
+  .now {
+    margin: 1.6rem 0 2.2rem;
+    background: var(--wash);
+    border: 1.6px solid var(--line-strong);
+    border-radius: var(--r-sketch);
+    padding: 12px 22px;
+    font-family: var(--serif);
+    color: #414c59;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .now .hand-h { font: 600 24px/1 var(--hand); color: var(--accent); flex: none; }
+
+  .sec-h {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    border-bottom: 1.6px solid var(--line);
+    padding-bottom: 0.5rem;
+    margin: 2rem 0 1rem;
+  }
+
+  .list { display: grid; gap: 1rem; margin-bottom: 2.4rem; }
+
+  .entry { border: 1.6px solid var(--line); border-radius: var(--r-sketch); padding: 18px 24px 18px 28px; position: relative; }
+  .entry::before { content: ''; position: absolute; left: 10px; top: 22px; bottom: 22px; width: 4px; border-radius: 3px; }
+  .entry.ready::before { background: var(--accent); opacity: 0.75; }
+  .entry.soon::before { border: 1.5px dashed var(--line-strong); }
+  .entry.ready { background: var(--bg); }
+  .entry.ready:hover { border-color: var(--line-strong); }
+  .entry.ready:hover .t { color: var(--accent-deep); }
+  .entry.soon { border-style: dashed; background: transparent; }
+
+  .row1 { display: flex; align-items: center; gap: 10px; }
+  .t { font-family: var(--serif); font-size: 1.22rem; font-weight: 700; color: var(--ink); flex: 1; }
+  .entry.soon .t { color: #55606e; font-weight: 600; }
+  .g { font-size: 14px; color: var(--dim); margin: 0.35rem 0 0.6rem; }
+
+
+  .back { margin-top: 2.6rem; font-size: 14px; }
+</style>

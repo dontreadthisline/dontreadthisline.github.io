@@ -1,28 +1,59 @@
 ---
-import Base from '../layouts/base.astro';
+import Base from '../layouts/Base.astro';
 import Underline from '../components/Underline.astro';
 ---
 
-<Base title="关于 — workbench">
+<Base title="关于 — aha room">
   <section class="page">
     <p class="kicker">about —</p>
     <h1>关于这块<Underline>工作台</Underline></h1>
 
     <div class="prose">
       <p>
-        程序员。白天写业务代码，晚上写一些没人要求我写的代码。
-        相信小而能读完的东西：三百行的解释器、一页纸的设计、一个下午能讲完的算法。
+        程序员。这个时代的程序员。
       </p>
       <p>
-        这个站不放简历，不放转载，只放两类东西：
-        <strong>做出来的作品</strong>，和<strong>学会它的过程</strong>。
-        如果某篇笔记替你省了一个下午，那它就值了。
+        AI 的发展快到让人来不及消化：超长的上下文、远超人类的试错能力、随叫随到的工具集。
+        过去，程序员靠领域积累、靠业务熟悉度，在就业市场上换一席之地 —— 这条路正在被彻底击碎。
+        顶尖数学家已经承认在智力活动上比不过超级模型，编程就更不必说了。
+      </p>
+      <p>
+        和 AI 比写代码，就像<Underline>和赛车赛跑</Underline>。这场比赛不值得报名。
+      </p>
+      <p>
+        但喜欢画画的人，从来不是为了和相机比谁画得像；借助外部力量登上珠峰早不是难事的今天，
+        每年还是有人用双脚去攀登。AI 能高效地替我写出软件，
+        却替不了我在这个过程中因为好奇心被满足而感到的快乐。
+      </p>
+      <p>
+        所以这个站只记录一件事：<strong>探索本身</strong>。
+        卡住的地方、顿悟的瞬间、被好奇心牵着走的路径。
+        这些是任何模型都给不了我的 —— 大概也是你在这里能得到的、和直接去问 LLM 不一样的东西。
       </p>
     </div>
+
+    <figure class="peak">
+      <svg viewBox="0 0 300 130" role="img" aria-label="手绘的雪山，峰顶有一面小旗">
+        <!-- 远山 -->
+        <path d="M18 108 C 45 96, 62 84, 84 78 C 100 74, 110 70, 118 64" class="m far" />
+        <path d="M282 108 C 258 98, 244 90, 228 82 C 214 76, 206 72, 198 68" class="m far" />
+        <!-- 主峰 -->
+        <path d="M118 64 L 152 22 L 178 52 L 192 40 L 232 108" class="m main" />
+        <!-- 雪线 -->
+        <path d="M142 32 L 152 22 L 162 34 C 156 36, 148 35, 142 32 Z" class="snow" />
+        <!-- 峰顶小旗 -->
+        <path d="M152 22 L 152 6" class="pole" />
+        <path d="M152 6 L 172 11 L 152 16" class="flag" />
+        <!-- 手写标注 -->
+        <text x="214" y="34" class="hand-note">by foot.</text>
+      </svg>
+      <figcaption>山还在那儿，用脚登的人也还在。</figcaption>
+    </figure>
 
     <h2 class="hand-head">now</h2>
     <ul class="now">
       <li><b>在写</b>tinyautograd 的设计之书，一章一章补</li>
+      <li><b>在攒</b>矩阵微分 —— 笔记攒够一章就独立成书</li>
       <li><b>在搭</b>这个博客，也算一件作品</li>
     </ul>
 
@@ -32,7 +63,7 @@ import Underline from '../components/Underline.astro';
       <li><b>邮件</b><a href="mailto:you@example.com">you@example.com</a></li>
     </ul>
 
-    <p class="ps">这一页的每一行占位文字，都等着被换成真话。</p>
+    <p class="ps">如果哪篇笔记替你省了一个下午，它就值了。</p>
   </section>
 </Base>
 
@@ -40,7 +71,7 @@ import Underline from '../components/Underline.astro';
   .page {
     max-width: var(--max);
     margin: 0 auto;
-    padding: 3.2rem 24px 0;
+    padding: 3.2rem 24px 3.4rem;
   }
 
   h1 {
@@ -51,11 +82,26 @@ import Underline from '../components/Underline.astro';
 
   .prose p {
     font-family: var(--serif);
-    margin: 0.9em 0;
+    margin: 0.95em 0;
     color: #333d4a;
   }
 
   .prose strong { color: var(--accent-ink); }
+
+  /* 手绘雪山 */
+  .peak {
+    margin: 2.2rem 0 0.6rem;
+    padding: 18px 12px 8px;
+    text-align: center;
+  }
+  .peak svg { max-width: 320px; width: 100%; height: auto; }
+  .peak .m { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .peak .far { opacity: 0.35; stroke-width: 1.8; }
+  .peak .snow { fill: rgba(58, 74, 168, 0.12); stroke: var(--accent); stroke-width: 1.5; }
+  .peak .pole { stroke: var(--ink); stroke-width: 1.8; stroke-linecap: round; }
+  .peak .flag { fill: rgba(58, 74, 168, 0.25); stroke: var(--accent); stroke-width: 1.6; stroke-linejoin: round; }
+  .peak .hand-note { font: 600 21px var(--hand); fill: var(--dim); }
+  .peak figcaption { font-family: var(--serif); font-size: 13px; color: var(--faint); padding-top: 6px; }
 
   .hand-head {
     font: 600 1.7rem/1 var(--hand);
